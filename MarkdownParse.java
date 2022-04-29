@@ -35,12 +35,17 @@ public class MarkdownParse {
                 break;
             }
             else if(closeBracket + 1 == openParen && openBracket != -1){
-                if(markdown.indexOf("\n", openBracket-1) != openBracket-1){
+                /*if(markdown.indexOf("\n", openBracket-1) != openBracket-1){
                     currentIndex = closeParen + 1;
                     System.out.println("1");
+                }*/
+                if(markdown.indexOf(" ", openParen) < closeParen ){
+                    // There is space between two parens
+                    currentIndex = closeBracket + 1;
                 }
                 else if(markdown.indexOf("\n", closeParen) == -1){
                     toReturn.add(markdown.substring(openParen + 1, closeParen));
+                    System.out.println("5");
                     break;
                 }
                 else if(markdown.indexOf("\n", openBracket) < closeParen){
@@ -48,16 +53,16 @@ public class MarkdownParse {
                     // In other words, they are not on the same line
                     //System.out.println("n" + markdown.indexOf("\n", openBracket));
                     currentIndex = closeParen + 1;
-                    //System.out.println("2");
+                    System.out.println("2");
                 }
                 else if(markdown.charAt(openBracket - 1) == '!'){
                     currentIndex = closeParen + 1;
-                    //System.out.println("3");
+                    System.out.println("3");
                 }
                 else{
                     toReturn.add(markdown.substring(openParen + 1, closeParen));
                     currentIndex = closeParen + 1;
-                    //System.out.println("4");
+                    System.out.println("4");
                 }
                 
             }

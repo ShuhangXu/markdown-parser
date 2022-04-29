@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-import javax.lang.model.util.ElementScanner14;
+//import javax.lang.model.util.ElementScanner14;
 
 public class MarkdownParse {
 
@@ -39,13 +39,14 @@ public class MarkdownParse {
                     currentIndex = closeParen + 1;
                     System.out.println("1");
                 }*/
-                if(markdown.indexOf(" ", openParen) < closeParen ){
+                if(markdown.indexOf(" ", openParen) < closeParen && markdown.indexOf(" ", openParen)!= -1){
                     // There is space between two parens
                     currentIndex = closeBracket + 1;
+                    //System.out.println("6");
                 }
                 else if(markdown.indexOf("\n", closeParen) == -1){
                     toReturn.add(markdown.substring(openParen + 1, closeParen));
-                    System.out.println("5");
+                    //System.out.println("5");
                     break;
                 }
                 else if(markdown.indexOf("\n", openBracket) < closeParen){
@@ -53,16 +54,16 @@ public class MarkdownParse {
                     // In other words, they are not on the same line
                     //System.out.println("n" + markdown.indexOf("\n", openBracket));
                     currentIndex = closeParen + 1;
-                    System.out.println("2");
+                    //System.out.println("2");
                 }
                 else if(markdown.charAt(openBracket - 1) == '!'){
                     currentIndex = closeParen + 1;
-                    System.out.println("3");
+                    //System.out.println("3");
                 }
                 else{
                     toReturn.add(markdown.substring(openParen + 1, closeParen));
                     currentIndex = closeParen + 1;
-                    System.out.println("4");
+                    //System.out.println("4");
                 }
                 
             }

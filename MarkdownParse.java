@@ -23,6 +23,10 @@ public class MarkdownParse {
               currentIndex = markdown.length();
 	          break;// prevents infinite loop
             }
+            else if(closeBracket == openBracket + 1 || closeParen == openParen + 1){
+                currentIndex = markdown.indexOf("[", openBracket);
+            }
+
              else if (closeBracket + 1 == openParen && openBracket != -1) {
                 if (markdown.indexOf("\n", openBracket) < closeParen) {
                     //openBracket and closeBracket are not on the same line

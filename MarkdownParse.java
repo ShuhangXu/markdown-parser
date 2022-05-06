@@ -29,7 +29,13 @@ public class MarkdownParse {
 
             int closeParen = markdown.indexOf(")", openParen);
             //System.out.println(closeParen);
-            
+            if(openBracket != -1 && closeBracket != -1){
+                if(markdown.indexOf("\n", closeBracket) == closeBracket + 1){
+                    currentIndex = closeBracket;
+                    openBracket = markdown.indexOf("[", currentIndex);
+                    closeBracket = markdown.indexOf("]", currentIndex);
+                }
+            }
             if(openBracket == -1 || closeBracket == -1 || openParen == -1 || closeParen == -1){
                 // In this iteration, we don't have enough []{}
                 currentIndex = markdown.length();

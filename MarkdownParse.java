@@ -27,7 +27,7 @@ public class MarkdownParse {
             }
             else if(closeBracket == openBracket + 1 || closeParen == openParen + 1){
                 System.out.println("2");
-                currentIndex = markdown.indexOf("[", openBracket+1);
+                currentIndex = closeBracket + 1;
             }
 
              else if (closeBracket + 1 == openParen && openBracket != -1) {
